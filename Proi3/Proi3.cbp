@@ -20,6 +20,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="MyAttRocket.cpp" />
+		<Unit filename="MyAttRocket.h" />
+		<Unit filename="MyDefRocket.cpp" />
+		<Unit filename="MyDefRocket.h" />
+		<Unit filename="OpponentRocket.cpp" />
+		<Unit filename="OpponentRocket.h" />
+		<Unit filename="Position.cpp" />
+		<Unit filename="Position.h" />
+		<Unit filename="Rocket.cpp" />
+		<Unit filename="Rocket.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
