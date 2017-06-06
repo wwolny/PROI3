@@ -11,12 +11,13 @@ class MyDefRocket : public Rocket
         int catchR(OpponentRocket* Target);
         int isGrounded();
         bool isLive(){ return live; }
-        MyDefRocket(int velocity=10) : Rocket()
+        MyDefRocket(std::string newName="Defensvie", int velocity=10) : Rocket()
         {
             setType(0);
             setPos(0,0);
             live=1;
             vel=velocity;
+            name=newName;
             posT=new Position;
             prevPosT=new Position;
             posT->setX(0);
@@ -35,6 +36,7 @@ class MyDefRocket : public Rocket
         int velT;//target's velocity
         double disT;//distance to Target
         bool live;
+        bool chosen;
 };
 
 #endif // MYDEFROCKET_H

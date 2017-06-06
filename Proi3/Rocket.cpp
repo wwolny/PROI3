@@ -49,9 +49,9 @@ int Rocket::changeDir(Position* start, Position* dest)
     int y0=start->getY();
     int x1=dest->getX();
     int y1=dest->getY();
-    int dx=x1-x0;
-    int dy=y1-y0;
-    int dist=mySqrt(start, dest)+1;
+    double dx=x1-x0;
+    double dy=y1-y0;
+    double dist=mySqrt(start, dest)+1;
     if(dx>0 && dy>0)
     {
         direction=dy/dist;
@@ -71,7 +71,7 @@ int Rocket::changeDir(Position* start, Position* dest)
     return 1;
 }
 
-Rocket::Rocket(int x, int y)
+Rocket::Rocket(std::string newName, int x, int y)
 {
     pos = new Position;
     lastPos = new Position;
@@ -81,6 +81,7 @@ Rocket::Rocket(int x, int y)
     lastPos->setX(0);
     lastPos->setY(0);
     direction=0.0;
+    name=newName;
 }
 
 Rocket::~Rocket()
@@ -95,6 +96,7 @@ Rocket::Rocket(const Rocket &tmp)
     this->lastPos=tmp.lastPos;
     this->vel=tmp.vel;
     this->direction=tmp.direction;
+    this->name=tmp.name;
 }
 
 Rocket& Rocket::operator=(const Rocket &tmp)
@@ -103,6 +105,7 @@ Rocket& Rocket::operator=(const Rocket &tmp)
     this->lastPos=tmp.lastPos;
     this->vel=tmp.vel;
     this->direction=tmp.direction;
+    this->name=tmp.name;
     return *this;
 }
 

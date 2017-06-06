@@ -14,7 +14,7 @@ class MyAttRocket : public Rocket
         bool isTarget();
         bool isLive(){ return live; }
         int isGrounded();
-        MyAttRocket(int velocity=10)
+        MyAttRocket(std::string newName="Attacking", int velocity=10) : Rocket()
         {
             target = NULL;
             setType(1);
@@ -22,6 +22,7 @@ class MyAttRocket : public Rocket
             setVel(velocity);
             target=0;
             live=1;
+            name=newName;
         }
         virtual ~MyAttRocket()
         {

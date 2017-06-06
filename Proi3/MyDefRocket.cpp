@@ -40,5 +40,6 @@ int MyDefRocket::catchR(OpponentRocket* Target)
     }
     changeDir(pos, posT);
     go(direction, vel);
+
     return 1;
 }

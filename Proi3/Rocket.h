@@ -1,6 +1,7 @@
 #ifndef ROCKET_H
 #define ROCKET_H
 #include <iostream>
+#include <string.h>
 #include <math.h>
 #include "Position.h"
 
@@ -13,7 +14,10 @@ class Rocket
         int getYPos(){return pos->getY();}
         int getVel() {return vel;}
         int getType() {return type;}
+        bool getChosen() {return chosen;}
+        void setChosen(bool cc){chosen=cc;}
         void setVel(int v);
+        void setName(std::string newName) {if(name!="") name=newName;}
         double getDir() {return direction;}
         int deltaX();//0-negative, 1 positive/neutral
         int deltaY();//0-negative, 1 positive/neutral
@@ -23,7 +27,7 @@ class Rocket
         virtual int dirUpdate();//MUST BE CHANGED
         Rocket(const Rocket &tmp);
         Rocket &operator=(const Rocket &tmp);
-        Rocket(int x=0, int y=0);
+        Rocket(std::string newName="Unknown", int x=0, int y=0);
         virtual ~Rocket();
     protected:
         int setType(int t);
@@ -32,6 +36,9 @@ class Rocket
         int vel;//velocity based on the two previous positions
         double direction;//direction of the rocket as sin HAVE TO BE CHANGED
         int type;//-1 opponent's, 0 my defending, 1 my attacking, 2- no type
+        bool chosen;//in launcher
+        std::string name;
+
 };
 
 #endif // ROCKET_H

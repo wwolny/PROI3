@@ -6,6 +6,7 @@
 #include "MyDefRocket.h"
 #include "OpponentRocket.h"
 #include "Launcher.h"
+#include "Singleton.h"
 
 using namespace std;
 

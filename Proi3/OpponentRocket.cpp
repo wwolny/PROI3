@@ -65,7 +65,7 @@ void OpponentRocket::nextTurn()
         }
         else return;
 
-        if(x>pos->getMax() || x<-(pos->getMax()) || y>pos->getMax() || y<-(pos->getMax()))
+        if(x>pos->getMax() || x<(-1*(pos->getMax())) || y > pos->getMax() || y<(-1*(pos->getMax())))
         {
             setPos(pos->getMax()-1, 0);
             newDir();

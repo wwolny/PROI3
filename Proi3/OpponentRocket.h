@@ -1,6 +1,7 @@
 #ifndef OPPONENTROCKET_H
 #define OPPONENTROCKET_H
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include <cmath>
 #include "Position.h"
@@ -14,10 +15,8 @@ class OpponentRocket :public Rocket
         void kill();
         int isLive() {return live;}
         int newDir();
-        bool getChosen() {return chosen;}
-        void setChosen(bool cc){chosen=cc;}
         virtual int velUpdate();
-        OpponentRocket(int x=255, int y=0) : Rocket(x,y)
+        OpponentRocket(std::string newName="Unknown", int x=255, int y=0) : Rocket(newName, x,y)
         {
             setType(-1);
             srand((unsigned)time(NULL));
@@ -25,14 +24,13 @@ class OpponentRocket :public Rocket
             start=0;
             chosen=0;
             live=1;
+            name=newName;
         }
         virtual ~OpponentRocket() {}
     private:
         bool start;
         static const int MAXVEL=20;
         bool live;//Is it still alive?
-        bool chosen;//in launcher
-
 };
 
 #endif // OPPONENTROCKET_H

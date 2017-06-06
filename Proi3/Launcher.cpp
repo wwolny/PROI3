@@ -11,6 +11,13 @@ Launcher::~Launcher()
     DfRs.clear();
 }
 
+int Launcher::unChoose(Rocket* rocket)
+{
+    if(rocket==NULL) return 0;
+    rocket->setChosen(0);
+    return 1;
+}
+
 int Launcher::addOpR(int xx, int yy)
 {
     OpponentRocket* newrocket;
@@ -117,8 +124,9 @@ MyDefRocket* Launcher::getDefR()
     for(itDR=DfRs.begin();itDR!=DfRs.end();itDR++)
     {
         tmp=*itDR;
-        if(tmp->isGrounded())
+        if(tmp->isGrounded() && tmp->getChosen()==0)
         {
+            tmp->setChosen(1);
             return tmp;
         }
     }
@@ -130,8 +138,9 @@ MyAttRocket* Launcher::getAtR()
     for(itAR=AtRs.begin();itAR!=AtRs.end();itAR++)
     {
         tmp=*itAR;
-        if(tmp->isGrounded())
+        if(tmp->isGrounded() && tmp->getChosen()==0)
         {
+            tmp->setChosen(1);
             return tmp;
         }
     }

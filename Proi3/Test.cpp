@@ -220,6 +220,10 @@ int Test::Launch()
     O4=launcher->getOpR();
     if(D1==NULL || D2==NULL || D3==NULL || D4==NULL || O1==NULL || O2==NULL || O3==NULL || O4==NULL)
         return 0;
+    launcher->unChoose(D3);
+    launcher->unChoose(D2);
+    D3=launcher->getDefR();
+    D2=launcher->getDefR();
 
     int i1;
     for(i1=1;O1->isLive()==1 ;++i1)
@@ -252,6 +256,49 @@ int Test::Launch()
         D4->catchR(O4);
     }
     std::cout<<"Test 4:"<<std::endl<<"chased after: "<<i4<<" turns."<<std::endl;
+
+    MyAttRocket* A1;
+    MyAttRocket* A2;
+    MyAttRocket* A3;
+    MyAttRocket* A4;
+    A1=launcher->getAtR();
+    A2=launcher->getAtR();
+    A3=launcher->getAtR();
+    A4=launcher->getAtR();
+    if(A1==NULL || A2==NULL || A3==NULL || A4==NULL)
+        return 0;
+    A1->attack(130,102);
+    A2->attack(-123,202);
+    A3->attack(-239,-2);
+    A4->attack(136,-242);
+
+    int a1;
+    for(a1=1;A1->isLive()==1 ;++a1)
+    {
+        A1->nextTurn();
+    }
+    std::cout<<"Attacking rocket test 1:"<<std::endl<<"hit after: "<<a1<<" turns."<<std::endl;
+
+    int a2;
+    for(a2=1;A2->isLive()==1 ;++a2)
+    {
+        A2->nextTurn();
+    }
+    std::cout<<"Attacking rocket test 2:"<<std::endl<<"hit after: "<<a2<<" turns."<<std::endl;
+
+    int a3;
+    for(a3=1;A3->isLive()==1 ;++a3)
+    {
+        A3->nextTurn();
+    }
+    std::cout<<"Attacking rocket test 3:"<<std::endl<<"hit after: "<<a3<<" turns."<<std::endl;
+
+    int a4;
+    for(a4=1;A4->isLive()==1 ;++a4)
+    {
+        A4->nextTurn();
+    }
+    std::cout<<"Attacking rocket test 4:"<<std::endl<<"hit after: "<<a4<<" turns."<<std::endl;
 
     delete launcher;
     return 1;

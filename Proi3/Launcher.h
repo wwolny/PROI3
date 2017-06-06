@@ -11,6 +11,7 @@
 class Launcher
 {
     public:
+        int unChoose(Rocket* rocket);
         MyDefRocket* getDefR();
         OpponentRocket* getOpR();
         MyAttRocket* getAtR();

@@ -14,7 +14,7 @@ void MyAttRocket::nextTurn()
     if(disT<vel)
     {
         disT=0;
-        live=0;
+        this->live=0;
     }
     else
     {
