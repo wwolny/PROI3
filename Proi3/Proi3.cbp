@@ -34,8 +34,6 @@
 		<Unit filename="Position.h" />
 		<Unit filename="Rocket.cpp" />
 		<Unit filename="Rocket.h" />
-		<Unit filename="Singleton.cpp" />
-		<Unit filename="Singleton.h" />
 		<Unit filename="Test.cpp" />
 		<Unit filename="Test.h" />
 		<Unit filename="main.cpp" />

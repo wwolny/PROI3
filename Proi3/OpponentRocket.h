@@ -11,26 +11,25 @@ class OpponentRocket :public Rocket
 {
     public:
         void startR(int x=155, int y=156);
-        void nextTurn();
-        void kill();
-        int isLive() {return live;}
+        virtual void nextTurn();
         int newDir();
         virtual int velUpdate();
         OpponentRocket(std::string newName="Unknown", int x=255, int y=0) : Rocket(newName, x,y)
         {
             setType(-1);
-            srand((unsigned)time(NULL));
+            std::srand((unsigned)time(NULL));
             startR();
             start=0;
             chosen=0;
-            live=1;
             name=newName;
+            direction=0;
         }
         virtual ~OpponentRocket() {}
+        OpponentRocket(const OpponentRocket &tmp);
+        virtual OpponentRocket &operator=(const OpponentRocket &tmp);
     private:
         bool start;
         static const int MAXVEL=20;
-        bool live;//Is it still alive?
 };
 
 #endif // OPPONENTROCKET_H

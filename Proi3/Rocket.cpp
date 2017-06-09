@@ -71,6 +71,11 @@ int Rocket::changeDir(Position* start, Position* dest)
     return 1;
 }
 
+void Rocket::kill()
+{
+    live=0;
+}
+
 Rocket::Rocket(std::string newName, int x, int y)
 {
     pos = new Position;
@@ -82,6 +87,9 @@ Rocket::Rocket(std::string newName, int x, int y)
     lastPos->setY(0);
     direction=0.0;
     name=newName;
+    vel=10;
+    chosen=0;
+    live=1;
 }
 
 Rocket::~Rocket()
@@ -89,13 +97,18 @@ Rocket::~Rocket()
     delete pos;
     delete lastPos;
 }
-
+void Rocket::nextTurn()
+{
+    return;
+}
 Rocket::Rocket(const Rocket &tmp)
 {
     this->pos=tmp.pos;
     this->lastPos=tmp.lastPos;
     this->vel=tmp.vel;
     this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
     this->name=tmp.name;
 }
 
@@ -105,6 +118,8 @@ Rocket& Rocket::operator=(const Rocket &tmp)
     this->lastPos=tmp.lastPos;
     this->vel=tmp.vel;
     this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
     this->name=tmp.name;
     return *this;
 }
@@ -126,20 +141,6 @@ int Rocket::setPos(int x, int y)
 int Rocket::velUpdate()
 {
     vel=mySqrt(pos, lastPos);
-    return 1;
-}
-
-int Rocket::dirUpdate()
-{
-    if(vel==0)
-    {
-        direction=0.0;
-        return 1;
-    }
-    if(deltaX()==1 && deltaY()==1)  direction=(pos->getY()-lastPos->getY())/vel;
-    else if(deltaX()==0 && deltaY()==1)  direction=1.0+(pos->getY()-lastPos->getY())/vel;
-    else if(deltaX()==0 && deltaY()==0)  direction=2.0+(pos->getY()-lastPos->getY())/vel;
-    else if(deltaX()==1 && deltaY()==0)  direction=3.0+(pos->getY()-lastPos->getY())/vel;
     return 1;
 }
 

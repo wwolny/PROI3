@@ -1,5 +1,30 @@
 #include "OpponentRocket.h"
+OpponentRocket::OpponentRocket(const OpponentRocket &tmp)
+{
+    this->pos=tmp.pos;
+    this->lastPos=tmp.lastPos;
+    this->vel=tmp.vel;
+    this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
+    this->name=tmp.name;
+    this->live=tmp.live;
+    this->start=tmp.start;
+}
 
+OpponentRocket& OpponentRocket::operator=(const OpponentRocket &tmp)
+{
+    this->pos=tmp.pos;
+    this->lastPos=tmp.lastPos;
+    this->vel=tmp.vel;
+    this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
+    this->name=tmp.name;
+    this->live=tmp.live;
+    this->start=tmp.start;
+    return *this;
+}
 int OpponentRocket::velUpdate()
 {
     vel=(std::rand()%MAXVEL)+1;
@@ -10,9 +35,9 @@ int OpponentRocket::newDir()
 {
     if(live==0) return 0;
     double tmp=0.0;
-    tmp=rand()%100;
+    tmp=std::rand()%100;
     tmp=tmp/100;
-    direction=(rand()%4)+tmp;
+    direction=(std::rand()%4)+tmp;
     if(direction==0.0) newDir();
     return 1;
 }
@@ -88,9 +113,4 @@ void OpponentRocket::startR(int x, int y)
     newDir();
     start=1;
     live=1;
-}
-
-void OpponentRocket::kill()
-{
-    live=0;
 }

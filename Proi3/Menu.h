@@ -8,7 +8,6 @@
 #include "MyDefRocket.h"
 #include "OpponentRocket.h"
 #include "Launcher.h"
-#include "Singleton.h"
 
 
 class Menu
@@ -18,20 +17,21 @@ class Menu
         ~Menu();
         void startMenu();
     private:
-        int writeFurnAll();
-        void orderWrite(node<int, Furniture>* start);
+        int creOpR();
+        int creAtR();
+        int creDfR();
+        int attackR();
+        int attackT();
+        int nextTurn();
+        void writeOpRs();
+        void writeAtRs();
+        void writeDfRs();
         void options();
-        void writeFurn(int key);
-        int writeAllFurnFile();
-        int creFurn();
-        int editFurn();
-        int delFurn();
         void getchar();
         int Success();
         int Fail();
         int isIntOK();
-        Catalog *MyCatalog;
-
+        Launcher* L;
 };
 
 #endif // MENU_H

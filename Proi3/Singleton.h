@@ -12,20 +12,19 @@
 class Singleton
 {
     public:
-        Launcher* getLauncher(); //creates new launcher
-        int delLauncher(Launcher* delLaunch);
-        int unChoose(Launcher* launch, Rocket* rocket);
-        MyDefRocket* getDefR(Launcher* launch);
-        OpponentRocket* getOpR(Launcher* launch);
-        MyAttRocket* getAtR(Launcher* launch);
-        int addOpR(Launcher* launch, int xx=255, int yy=0);
-        int addDfR(Launcher* launch, int vv=10);
-        int addAtR(Launcher* launch, int vv=10);
-        int delOpR(Launcher* launch, OpponentRocket* delrocket);
-        int delDfR(Launcher* launch, MyDefRocket* delrocket);
-        int delAtR(Launcher* launch, MyAttRocket* delrocket);
-        bool isRInBase(Launcher* launch, Rocket* rock);
+        int unChoose(Rocket* rocket);
+        MyDefRocket* getDefR();
+        OpponentRocket* getOpR();
+        MyAttRocket* getAtR();
+        int addOpR(int xx=255, int yy=0);
+        int addDfR(int vv=10);
+        int addAtR(int vv=10);
+        int delOpR(OpponentRocket* delrocket);
+        int delDfR(MyDefRocket* delrocket);
+        int delAtR(MyAttRocket* delrocket);
+        bool isRInBase(Rocket* rock);
     public:
+        static Singleton* Init();
         static Singleton& getInstance()
         {
             static Singleton instance;
@@ -35,8 +34,9 @@ class Singleton
         Singleton(Singleton const&);
         void operator=(Singleton const&);
     private:
+        static Singleton* init;
         Singleton();
-        std::list<Launcher*> launchList;
+        Launcher* launch;
 };
 
 #endif // SINGLETON_H

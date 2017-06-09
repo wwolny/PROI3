@@ -2,28 +2,21 @@
 
 Menu::Menu()
 {
-
+    L= new Launcher;
 }
 
 Menu::~Menu()
 {
-}
-void Menu::writeFurn(int key)
-{
-    Furniture* Furn;
-    Furn=MyCatalog->findFurnK(key);
-    std::cout<<"Furniture key: "<<key<<std::endl<<"Name: "<<Furn->getName()<<"   Price: ";
-    std::cout<<Furn->getPrice()<<"   Mass: "<<Furn->getMass()<<std::endl;
-    return;
+    delete L;
 }
 void Menu::options()
 {
     std::cout<<"[c] create opponent rocket"<<std::endl;
-    std::cout<<"[d] delete opponent rocket"<<std::endl;
+    std::cout<<"[r] create attacking rocket"<<std::endl;
     std::cout<<"[e] create defensive rocket"<<std::endl;
-    std::cout<<"[w] delete defensive rocket"<<std::endl;
-    std::cout<<"[a] create attacking rocket"<<std::endl;
-    std::cout<<"[z] delete attacking rocket"<<std::endl;
+    std::cout<<"[s] attack opponent rocket"<<std::endl;
+    std::cout<<"[d] attack target"<<std::endl;
+    std::cout<<"[f] next turn"<<std::endl;
     std::cout<<"[t] write down all opponent rockets"<<std::endl;
     std::cout<<"[y] write down all defensive rockets"<<std::endl;
     std::cout<<"[u] write down all attacking rockets"<<std::endl;
@@ -41,19 +34,31 @@ void Menu::startMenu()
         switch (Next)
         {
             case 'c':
-                this->creFurn();
+                this->creOpR();
                 break;
-            case 'd':
-                this->delFurn();
+            case 's':
+                this->attackR();
                 break;
             case 'e':
-                this->editFurn();
+                this->creDfR();
                 break;
-            case 't':
-                this->writeFurnAll();
+            case 'd':
+                this->attackT();
+                break;
+            case 'r':
+                this->creAtR();
                 break;
             case 'f':
-                this->writeAllFurnFile();
+                this->nextTurn();
+                break;
+            case 't':
+                this->writeOpRs();
+                break;
+            case 'y':
+                this->writeDfRs();
+                break;
+            case 'u':
+                this->writeAtRs();
                 break;
             case 'l':
                 return;
@@ -64,115 +69,174 @@ void Menu::startMenu()
     }
 }
 //--------------------------------------------------
-int Menu::creFurn()
+int Menu::creOpR()
 {
+    OpponentRocket* tmp;
+    L->addOpR();
+    tmp=L->getOpR();
+    std::string nn;
     char c;
-    std::string name="";
-    int price=0, mass=0, key=0;
-    std::cout<<"Type name of Furniture: ";
-    std::cin>>name;
+    int xx=150,yy=150,vv=10;
+    std::cout<<"Type name of the rocket: ";
+    std::cin>>nn;
     std::cin.ignore(1000,'\n');
-    std::cout<<"Type key of furniture: ";
-    std::cin>>c;
-    if(!std::isdigit(c))    return this->Fail();
-    std::cin.unget();
-    std::cin>>key;
-    if(!isIntOK())      return this->Fail();
-    std::cin.ignore(1000,'\n');
-    std::cout<<"Type price of furniture: ";
+    std::cout<<"Type X: ";
     std::cin>>c;
     if(!std::isdigit(c)) return this->Fail();
     std::cin.unget();
-    std::cin>>price;
+    std::cin>>xx;
     if(!isIntOK()) return this->Fail();
     std::cin.ignore(1000,'\n');
-    std::cout<<"Type mass of furniture: ";
+    std::cout<<"Type Y: ";
     std::cin>>c;
     if(!std::isdigit(c)) return this->Fail();
     std::cin.unget();
-    std::cin>>mass;
+    std::cin>>yy;
     if(!isIntOK()) return this->Fail();
     std::cin.ignore(1000,'\n');
-    if(MyCatalog->addFurn(key,name, price, mass)==1)return this->Success();
-    else return this->Fail();
+    std::cout<<"Type the velocity: ";
+    std::cin>>c;
+    if(!std::isdigit(c)) return this->Fail();
+    std::cin.unget();
+    std::cin>>vv;
+    if(!isIntOK()) return this->Fail();
+    std::cin.ignore(1000,'\n');
+    if(!(tmp->setPos(xx,yy))) return this->Fail();
+    tmp->setVel(vv);
+    tmp->setName(nn);
+    return this->Success();
 }
-int Menu::delFurn()
-{
-    char c;
-    int key=-1;
-    writeFurnAll();
-    std::cout<<"type exactly the KEY of furniture that should be deleted:";
-    std::cin>>c;
-    if(!std::isdigit(c))    return this->Fail();
-    std::cin.unget();
-    std::cin>>key;
-    if(!isIntOK())      return this->Fail();
-    std::cin.ignore(1000,'\n');
-    if(MyCatalog->delFurnK(key)==1) return this->Success();
-    else return this->Fail();
-}
-int Menu::editFurn()
-{
-    writeFurnAll();
-    char c;
-    std::string name="";
-    int price=0, mass=0, key=0;
-    std::cout<<"Type exactly the key of furniture that should be edited: ";
-    std::cin>>c;
-    if(!std::isdigit(c))    return this->Fail();
-    std::cin.unget();
-    std::cin>>key;
-    if(!isIntOK())      return this->Fail();
-    std::cin.ignore(1000,'\n');
-    if(MyCatalog->isKeyMap(key)==0)return this->Fail();
-    std::cout<<"Type new name of the furniture: ";
-    std::cin>>name;
-    std::cin.ignore(1000,'\n');
-    std::cout<<"Type new price of the furniture: ";
-    std::cin>>c;
-    if(!std::isdigit(c)) return this->Fail();
-    std::cin.unget();
-    std::cin>>price;
-    if(!isIntOK()) return this->Fail();
-    std::cin.ignore(1000,'\n');
-    std::cout<<"Type new mass of furniture: ";
-    std::cin>>c;
-    if(!std::isdigit(c)) return this->Fail();
-    std::cin.unget();
-    std::cin>>mass;
-    if(!isIntOK()) return this->Fail();
-    std::cin.ignore(1000,'\n');
-    if(MyCatalog->editFurn(key,name, price, mass)==1)return this->Success();
-    else return this->Fail();
-}
-int Menu::writeFurnAll()
-{
-    std::cout<<"Furnitures that are in the catalog:"<<std::endl;
-    orderWrite(MyCatalog->getRoot());
-    return 1;
 
-}
-void Menu::orderWrite(node<int, Furniture>* start)
+int Menu::creDfR()
 {
-    if(start==NULL) return;
-    if(start->l_son != NULL) //jezeli ma dzieci po lewej stronie wywolaj funkcje rekurencyjnie
-    {
-        orderWrite(start->l_son);
-    }
-    std::cout<<"Key: "<<start->key<<"    Name: ";
-    std::cout<<start->val->getName();
-    std::cout<<"     Price: "<<start->val->getPrice()<<"      Mass: "<<start->val->getMass()<<std::endl;
-    if(start->r_son != NULL) //jezeli ma dzieci po prawej stronie wywolaj rekurencyjnie
-        orderWrite(start->r_son);
-}
-int Menu::writeAllFurnFile()
-{
-    std::string fname="";
-    std::cout<<"Type name of file: ";
-    std::cin>>fname;
+    MyDefRocket* tmp;
+    L->addDfR();
+    tmp=L->getDefR();
+    std::string nn;
+    char c;
+    int vv=10;
+    std::cout<<"Type name of the rocket: ";
+    std::cin>>nn;
     std::cin.ignore(1000,'\n');
-    if(MyCatalog->allFile(fname)==1)return Success();
-    else return Fail();
+    std::cout<<"Type the velocity: ";
+    std::cin>>c;
+    if(!std::isdigit(c)) return this->Fail();
+    std::cin.unget();
+    std::cin>>vv;
+    if(!isIntOK()) return this->Fail();
+    std::cin.ignore(1000,'\n');
+    tmp->setVel(vv);
+    tmp->setName(nn);
+    return this->Success();
+}
+
+int Menu::creAtR()
+{
+    MyAttRocket* tmp;
+    L->addAtR();
+    tmp=L->getAtR();
+    std::string nn;
+    char c;
+    int vv=10;
+    std::cout<<"Type name of the rocket: ";
+    std::cin>>nn;
+    std::cin.ignore(1000,'\n');
+    std::cout<<"Type the velocity: ";
+    std::cin>>c;
+    if(!std::isdigit(c)) return this->Fail();
+    std::cin.unget();
+    std::cin>>vv;
+    if(!isIntOK()) return this->Fail();
+    std::cin.ignore(1000,'\n');
+    tmp->setVel(vv);
+    tmp->setName(nn);
+    return this->Success();
+}
+void Menu::writeOpRs()
+{
+    OpponentRocket* tmp;
+    for(L->beginIOR(); *L->itOR != L->endOR(); L->itOR++)
+    {
+        tmp=*L->itOR;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+    }
+    return;
+}
+
+void Menu::writeDfRs()
+{
+    MyDefRocket* tmp;
+    for(L->beginIDR(); *L->itDR != L->endDR(); L->itDR++)
+    {
+        tmp=*L->itDR;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+    }
+    return;
+}
+
+void Menu::writeAtRs()
+{
+    MyAttRocket* tmp;
+    for(L->beginIAR(); *L->itAR != L->endAR(); L->itAR++)
+    {
+        tmp=*L->itAR;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+    }
+    return;
+}
+
+int Menu::attackR()
+{
+    MyDefRocket* tmpD;
+    OpponentRocket* tmpO;
+    writeDfRs();
+    std::string nn;
+    std::cout<<"type exactly the name of the rocket that should attack:";
+    std::cin>>nn;
+    std::cin.ignore(1000,'\n');
+    tmpD=L->getDfR(nn);
+    if(tmpD==NULL) return Fail();
+    writeOpRs();
+    std::cout<<"type exactly the name of the rocket that should be attacked:";
+    std::cin>>nn;
+    std::cin.ignore(1000,'\n');
+    tmpO=L->getOpR(nn);
+    if(tmpO==NULL) return Fail();
+    tmpD->catchR(tmpO);
+    return Success();
+}
+int Menu::attackT()
+{
+    MyAttRocket* tmpA;
+    char c;
+    writeAtRs();
+    std::string nn;
+    std::cout<<"type exactly the name of the rocket that should attack:";
+    std::cin>>nn;
+    std::cin.ignore(1000,'\n');
+    tmpA=L->getAtR(nn);
+    if(tmpA==NULL) return Fail();
+    int xx, yy;
+    std::cout<<"Type X: ";
+    std::cin>>c;
+    if(!std::isdigit(c)) return this->Fail();
+    std::cin.unget();
+    std::cin>>xx;
+    if(!isIntOK()) return this->Fail();
+    std::cin.ignore(1000,'\n');
+    std::cout<<"Type Y: ";
+    std::cin>>c;
+    if(!std::isdigit(c)) return this->Fail();
+    std::cin.unget();
+    std::cin>>yy;
+    if(!isIntOK()) return this->Fail();
+    std::cin.ignore(1000,'\n');
+    if(tmpA->attack(xx, yy)==0) return Fail();
+    return Success();
+}
+int Menu::nextTurn()
+{
+    L->nextTurn();
 }
 //-----------------------
 void Menu::getchar()

@@ -7,7 +7,6 @@
 #include "OpponentRocket.h"
 #include "MyDefRocket.h"
 #include "Launcher.h"
-#include "Singleton.h"
 
 class Test
 {
@@ -17,6 +16,7 @@ class Test
         int DefRocket();
         int AttRocket();
         int Launch();
+        int Catch();
         Test();
         ~Test();
     private:

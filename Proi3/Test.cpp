@@ -5,7 +5,6 @@ Test::Test()
     tRocket= new Rocket;
     ORocket= new OpponentRocket;
 }
-
 Test::~Test()
 {
     delete tRocket;
@@ -41,7 +40,6 @@ int Test::rocketTest()
     if(tRocket->setPos(50, 32)==0) return 0;
     if(tRocket->setPos(32, -43)==0) return 0;
     std::cout<<tRocket->getVel()<<std::endl;
-    std::cout<<tRocket->dirUpdate()<<std::endl;
     return 1;
 }
 int Test::DefRocket()
@@ -183,6 +181,29 @@ int Test::AttRocket()
     delete rocket2;
     delete rocket3;
     delete rocket4;
+    return 1;
+}
+
+int Test::Catch()
+{
+    Launcher* launch;
+    launch = new Launcher;
+    try
+    {
+        launch->addAtR(3);
+        launch->addDfR(3);
+        launch->addOpR(3);
+        launch->addAtR(3);
+        launch->addDfR(3);
+        launch->addOpR(3);
+        launch->delAtR(NULL);
+        launch->delDfR(NULL);
+        launch->delOpR(NULL);
+    }
+    catch(std::string exc)
+    {
+        std::cout<<"Exception: "<<exc<<std::endl;
+    }
     return 1;
 }
 

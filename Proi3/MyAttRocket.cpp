@@ -1,4 +1,32 @@
 #include "MyAttRocket.h"
+MyAttRocket::MyAttRocket(const MyAttRocket &tmp)
+{
+    this->pos=tmp.pos;
+    this->lastPos=tmp.lastPos;
+    this->vel=tmp.vel;
+    this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
+    this->name=tmp.name;
+    this->live=tmp.live;
+    this->disT=tmp.disT;
+    this->target=tmp.target;
+}
+
+MyAttRocket& MyAttRocket::operator=(const MyAttRocket &tmp)
+{
+    this->pos=tmp.pos;
+    this->lastPos=tmp.lastPos;
+    this->vel=tmp.vel;
+    this->direction=tmp.direction;
+    this->type=tmp.type;
+    this->chosen=tmp.chosen;
+    this->name=tmp.name;
+    this->live=tmp.live;
+    this->disT=tmp.disT;
+    this->target=tmp.target;
+    return *this;
+}
 int MyAttRocket::isGrounded()
 {
     if(pos->getX()==0 && pos->getY()==0 && isLive()==1)
@@ -28,8 +56,9 @@ void MyAttRocket::nextTurn()
 int MyAttRocket::attack(Position* xy)
 {
     if(xy==NULL || live==0) return 0;
-    target =new Position;
-    target=xy;
+    if(target==NULL) target =new Position;
+    target->setX(xy->getX());
+    target->setY(xy->getY());
     disT=mySqrt(pos, target);
     changeDir(pos, target);
     return 1;
@@ -37,7 +66,7 @@ int MyAttRocket::attack(Position* xy)
 
 int MyAttRocket::attack(int xx, int yy)
 {
-    target =new Position;
+    if(target==NULL) target =new Position;
     target->setX(xx);
     target->setY(yy);
     disT=mySqrt(pos, target);

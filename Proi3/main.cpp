@@ -6,7 +6,7 @@
 #include "MyDefRocket.h"
 #include "OpponentRocket.h"
 #include "Launcher.h"
-#include "Singleton.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -25,7 +25,10 @@ int main()
     else std::cout<<"Attacking Rocket Test: failed!"<<std::endl;
     if(MyTest->Launch()==1)   std::cout<<"Launcher Test: passed!"<<std::endl;
     else std::cout<<"Launcher Test: failed!"<<std::endl;
-
+    if(MyTest->Catch()==1)   std::cout<<"Catch Test: passed!"<<std::endl;
+    else std::cout<<"Catch Test: failed!"<<std::endl;
+    Menu menu;
+    menu.startMenu();
     delete MyTest;
     return 0;
 }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1496771658 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/main.cpp
+1496827032 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/main.cpp
 	<iostream>
 	"Position.h"
 	"Rocket.h"
@@ -8,37 +8,37 @@
 	"MyDefRocket.h"
 	"OpponentRocket.h"
 	"Launcher.h"
-	"Singleton.h"
+	"Menu.h"
 
-1496363929 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/MyAttRocket.cpp
+1496825090 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/MyAttRocket.cpp
 	"MyAttRocket.h"
 
-1496772826 /home/wojtek/Documents/PROI17L/PROI3/Proi3/MyAttRocket.h
+1497010098 /home/wojtek/Documents/PROI17L/PROI3/Proi3/MyAttRocket.h
 	<iostream>
 	"Position.h"
 	"Rocket.h"
 
 1496193610 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Position.h
 
-1496773060 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Rocket.h
+1497010075 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Rocket.h
 	<iostream>
 	<string.h>
 	<math.h>
 	"Position.h"
 
-1496361459 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/MyDefRocket.cpp
+1497010493 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/MyDefRocket.cpp
 	"MyDefRocket.h"
 
-1496772748 /home/wojtek/Documents/PROI17L/PROI3/Proi3/MyDefRocket.h
+1497010300 /home/wojtek/Documents/PROI17L/PROI3/Proi3/MyDefRocket.h
 	<iostream>
 	"Position.h"
 	"Rocket.h"
 	"OpponentRocket.h"
 
-1496361305 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/OpponentRocket.cpp
+1496833614 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/OpponentRocket.cpp
 	"OpponentRocket.h"
 
-1496772725 /home/wojtek/Documents/PROI17L/PROI3/Proi3/OpponentRocket.h
+1497010089 /home/wojtek/Documents/PROI17L/PROI3/Proi3/OpponentRocket.h
 	<iostream>
 	<string>
 	<cstdlib>
@@ -46,16 +46,16 @@
 	"Position.h"
 	"Rocket.h"
 
-1496193683 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Position.cpp
+1496826475 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Position.cpp
 	"Position.h"
 
-1496362255 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Rocket.cpp
+1497011631 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Rocket.cpp
 	"Rocket.h"
 
-1496364656 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Test.cpp
+1496827147 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Test.cpp
 	"Test.h"
 
-1496771666 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Test.h
+1496826833 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Test.h
 	<iostream>
 	"Rocket.h"
 	"Position.h"
@@ -63,12 +63,11 @@
 	"OpponentRocket.h"
 	"MyDefRocket.h"
 	"Launcher.h"
-	"Singleton.h"
 
-1496364446 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Launcher.cpp
+1497011558 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Launcher.cpp
 	"Launcher.h"
 
-1496364377 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Launcher.h
+1497009436 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Launcher.h
 	<iostream>
 	<list>
 	"Position.h"
@@ -77,15 +76,23 @@
 	"MyAttRocket.h"
 	"MyDefRocket.h"
 
-1496360013 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Menu.cpp
+1497009482 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Menu.cpp
 	"Menu.h"
 
-1496256898 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Menu.h
+1496833775 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Menu.h
+	<iostream>
+	"Position.h"
+	"Rocket.h"
+	"Test.h"
+	"MyAttRocket.h"
+	"MyDefRocket.h"
+	"OpponentRocket.h"
+	"Launcher.h"
 
-1496771435 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Singleton.cpp
+1496785281 source:/home/wojtek/Documents/PROI17L/PROI3/Proi3/Singleton.cpp
 	"Singleton.h"
 
-1496771362 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Singleton.h
+1496785232 /home/wojtek/Documents/PROI17L/PROI3/Proi3/Singleton.h
 	<iostream>
 	<list>
 	"Position.h"

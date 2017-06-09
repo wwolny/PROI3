@@ -1,13 +1,21 @@
 #include "Singleton.h"
+Singleton* Singleton::init=NULL;
 
 Singleton::Singleton()
 {
-
+    launch = new Launcher;
+}
+Singleton* Singleton::Init(){
+    if(init == NULL)
+    {
+        init= new Singleton();
+    }
+    return init;
 }
 
 Singleton::~Singleton()
 {
-    launchList.clear();
+    delete launch;
 }
 
 Singleton::Singleton(Singleton const&)
@@ -19,75 +27,59 @@ void Singleton::operator=(Singleton const&)
 {
     delete this;
 }
-
-Launcher* Singleton::getLauncher()
-{
-    Launcher* newLaunch;
-    newLaunch= new Launcher;
-    launchList.push_back(newLaunch);
-    return newLaunch;
-}
-
-int Singleton::delLauncher(Launcher* delLaunch)
-{
-    if(delLaunch==NULL) return 0;
-    delete delLaunch;
-    return 1;
-}
-
-int Singleton::unChoose(Launcher* launch, Rocket* rocket)
+int Singleton::unChoose(Rocket* rocket)
 {
     if(launch==NULL) return 0;
     if(launch->unChoose(rocket)==0) return 0;
     else return 1;
 }
 
-MyDefRocket* Singleton::getDefR(Launcher* launch)
+MyDefRocket* Singleton::getDefR()
 {
     if(launch==NULL) return 0;
     return launch->getDefR();
 }
-OpponentRocket* Singleton::getOpR(Launcher* launch)
+OpponentRocket* Singleton::getOpR()
 {
     if(launch==NULL) return 0;
     return launch->getOpR();
 }
-MyAttRocket* Singleton::getAtR(Launcher* launch)
+MyAttRocket* Singleton::getAtR()
 {
     if(launch==NULL) return 0;
     return launch->getAtR();
 }
-int Singleton::addOpR(Launcher* launch, int xx, int yy)
+int Singleton::addOpR(int xx, int yy)
 {
     if(launch==NULL) return 0;
     return launch->addOpR(xx, yy);
 }
-int Singleton::addDfR(Launcher* launch, int vv)
+int Singleton::addDfR(int vv)
 {
     if(launch==NULL) return 0;
     return launch->addDfR(vv);
 }
-int Singleton::addAtR(Launcher* launch, int vv)
+int Singleton::addAtR(int vv)
 {
     if(launch==NULL) return 0;
     return launch->addAtR(vv);
 }
-int Singleton::delOpR(Launcher* launch, OpponentRocket* delrocket)
+int Singleton::delOpR(OpponentRocket* delrocket)
 {
     if(launch==NULL) return 0;
     return launch->delOpR(delrocket);
 }
-int Singleton::delDfR(Launcher* launch, MyDefRocket* delrocket)
+int Singleton::delDfR(MyDefRocket* delrocket)
 {
     if(launch==NULL) return 0;
     return launch->delDfR(delrocket);
 }
-int Singleton::delAtR(Launcher* launch, MyAttRocket* delrocket)
+int Singleton::delAtR(MyAttRocket* delrocket)
 {
     if(launch==NULL) return 0;
     return launch->delAtR(delrocket);
 }
-bool Singleton::isRInBase(Launcher* launch, Rocket* rock)
+bool Singleton::isRInBase(Rocket* rock)
 {
     if(launch==NULL) return 0;
     return launch->isRInBase(rock);
