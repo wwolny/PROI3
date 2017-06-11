@@ -70,6 +70,7 @@ int MyDefRocket::catchR(OpponentRocket* Target)
     {
         Target->kill();
         live=0;
+        setPos(Target->getXPos(), Target->getYPos());
         return 1;
     }
     changeDir(pos, posT);
@@ -79,6 +80,7 @@ int MyDefRocket::catchR(OpponentRocket* Target)
 }
 void MyDefRocket::nextTurn()
 {
+    if(OpRocket==NULL) return;
     if(prevPosT->getX()==0 && prevPosT->getY()==0 && posT->getX()==0 && posT->getY()==0)
     {
         posT->setX(OpRocket->getXPos());
@@ -105,6 +107,7 @@ void MyDefRocket::nextTurn()
     {
         OpRocket->kill();
         live=0;
+        setPos(OpRocket->getXPos(), OpRocket->getYPos());
         return;
     }
     changeDir(pos, posT);

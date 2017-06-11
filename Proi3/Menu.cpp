@@ -72,10 +72,9 @@ void Menu::startMenu()
 int Menu::creOpR()
 {
     OpponentRocket* tmp;
-    L->addOpR();
-    tmp=L->getOpR();
+    tmp= new OpponentRocket;
     std::string nn;
-    char c;
+    char c; int neg=1;
     int xx=150,yy=150,vv=10;
     std::cout<<"Type name of the rocket: ";
     std::cin>>nn;
@@ -101,7 +100,14 @@ int Menu::creOpR()
     std::cin>>vv;
     if(!isIntOK()) return this->Fail();
     std::cin.ignore(1000,'\n');
-    if(!(tmp->setPos(xx,yy))) return this->Fail();
+    if(!(tmp->setPos(xx,yy)))
+    {
+        delete tmp;
+        return this->Fail();
+    }
+    L->addOpR();
+    tmp=L->getOpR();
+    tmp->setPos(xx, yy);
     tmp->setVel(vv);
     tmp->setName(nn);
     return this->Success();
@@ -110,8 +116,6 @@ int Menu::creOpR()
 int Menu::creDfR()
 {
     MyDefRocket* tmp;
-    L->addDfR();
-    tmp=L->getDefR();
     std::string nn;
     char c;
     int vv=10;
@@ -125,6 +129,8 @@ int Menu::creDfR()
     std::cin>>vv;
     if(!isIntOK()) return this->Fail();
     std::cin.ignore(1000,'\n');
+    L->addDfR();
+    tmp=L->getDefR();
     tmp->setVel(vv);
     tmp->setName(nn);
     return this->Success();
@@ -133,8 +139,6 @@ int Menu::creDfR()
 int Menu::creAtR()
 {
     MyAttRocket* tmp;
-    L->addAtR();
-    tmp=L->getAtR();
     std::string nn;
     char c;
     int vv=10;
@@ -148,6 +152,8 @@ int Menu::creAtR()
     std::cin>>vv;
     if(!isIntOK()) return this->Fail();
     std::cin.ignore(1000,'\n');
+    L->addAtR();
+    tmp=L->getAtR();
     tmp->setVel(vv);
     tmp->setName(nn);
     return this->Success();
@@ -158,7 +164,9 @@ void Menu::writeOpRs()
     for(L->beginIOR(); *L->itOR != L->endOR(); L->itOR++)
     {
         tmp=*L->itOR;
-        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel();
+        if(tmp->isLive()==1)    std::cout<<"    Alive"<<std::endl;
+        else std::cout<<"    Destroyed"<<std::endl;
     }
     return;
 }
@@ -169,7 +177,9 @@ void Menu::writeDfRs()
     for(L->beginIDR(); *L->itDR != L->endDR(); L->itDR++)
     {
         tmp=*L->itDR;
-        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel();
+        if(tmp->isLive()==1)    std::cout<<"    Alive"<<std::endl;
+        else std::cout<<"    Destroyed"<<std::endl;
     }
     return;
 }
@@ -180,7 +190,9 @@ void Menu::writeAtRs()
     for(L->beginIAR(); *L->itAR != L->endAR(); L->itAR++)
     {
         tmp=*L->itAR;
-        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel()<<std::endl;
+        std::cout<<"name: "<<tmp->getName()<<" ("<<tmp->getXPos()<<","<<tmp->getYPos()<<")     velocity:"<<tmp->getVel();
+        if(tmp->isLive()==1)    std::cout<<"    Alive"<<std::endl;
+        else std::cout<<"    Destroyed"<<std::endl;
     }
     return;
 }

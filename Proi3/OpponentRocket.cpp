@@ -92,7 +92,7 @@ void OpponentRocket::nextTurn()
 
         if(x>pos->getMax() || x<(-1*(pos->getMax())) || y > pos->getMax() || y<(-1*(pos->getMax())))
         {
-            setPos(pos->getMax()-1, 0);
+            setPos(pos->getMax()-50, -150);
             newDir();
             velUpdate();
             nextTurn();

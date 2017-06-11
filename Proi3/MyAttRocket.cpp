@@ -43,6 +43,7 @@ void MyAttRocket::nextTurn()
     {
         disT=0;
         this->live=0;
+        setPos(target->getX(), target->getY());
     }
     else
     {
