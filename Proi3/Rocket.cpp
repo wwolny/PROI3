@@ -8,8 +8,8 @@ int Rocket::go(double dir, int velo)
     int y,x;
     if(dir<1)
     {
-        y=dir*velo;//delta y
-        x=(1.0-dir)*velo;//delya x
+        y=dir*velo;
+        x=(1.0-dir)*velo;
         y=getYPos()+y;
         x=getXPos()+x;
     }
@@ -24,8 +24,8 @@ int Rocket::go(double dir, int velo)
     else if(dir<3)
     {
         dir=dir-2.0;
-        y=dir*velo;//delta y
-        x=(1.0-dir)*velo;//delya x
+        y=dir*velo;
+        x=(1.0-dir)*velo;
         y=getYPos()-y;
         x=getXPos()-x;
     }

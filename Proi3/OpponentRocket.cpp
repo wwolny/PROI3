@@ -59,12 +59,12 @@ void OpponentRocket::nextTurn()
         double dir=getDir();
         if(dir<1)
         {
-            y=dir*getVel();//delta y
-            x=(1.0-dir)*getVel();//delya x
+            y=dir*getVel();
+            x=(1.0-dir)*getVel();
             y=getYPos()+y;
             x=getXPos()+x;
         }
-        else if(dir<2)//x do poprawy
+        else if(dir<2)
         {
             dir=dir-1.0;
             x=dir*getVel();
@@ -72,11 +72,11 @@ void OpponentRocket::nextTurn()
             y=getYPos()+y;
             x=getXPos()-x;
         }
-        else if(dir<3)//y do poprawy
+        else if(dir<3)
         {
             dir=dir-2.0;
-            y=dir*getVel();//delta y
-            x=(1.0-dir)*getVel();//delya x
+            y=dir*getVel();
+            x=(1.0-dir)*getVel();
             y=getYPos()-y;
             x=getXPos()-x;
         }
@@ -96,10 +96,6 @@ void OpponentRocket::nextTurn()
             newDir();
             velUpdate();
             nextTurn();
-        }
-        else if(x==0 && y==0)
-        {
-            //THE END
         }
         else setPos(x,y);
 
