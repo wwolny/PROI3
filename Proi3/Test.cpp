@@ -204,6 +204,7 @@ int Test::Catch()
     {
         std::cout<<"Exception: "<<exc<<std::endl;
     }
+    delete launch;
     return 1;
 }
 
